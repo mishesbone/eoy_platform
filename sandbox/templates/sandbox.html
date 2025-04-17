@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox</title>
+</head>
+<body>
+    <h1>Sandbox</h1>
+    
+    <h2>Submit New Task</h2>
+    <form id="submit_task_form">
+        <label for="task_name">Task Name:</label>
+        <input type="text" id="task_name" name="task_name" required><br><br>
+        
+        <label for="task_description">Task Description:</label>
+        <textarea id="task_description" name="task_description" required></textarea><br><br>
+        
+        <button type="submit">Submit Task</button>
+    </form>
+
+    <h2>Submitted Tasks</h2>
+    <ul id="task_list">
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.name }}</strong> - Status: {{ task.status }}
+                <a href="#" onclick="checkTaskStatus({{ task.id }})">Check Status</a>
+                {% if task.status == 'completed' %}
+                    <br>Result: {{ task.result }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        document.getElementById('submit_task_form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var taskName = document.getElementById('task_name').value;
+            var taskDescription = document.getElementById('task_description').value;
+            
+            fetch('/submit_task/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `task_name=${taskName}&task_description=${taskDescription}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Task submitted successfully!');
+                    location.reload();  // Reload the page to display the new task
+                } else {
+                    alert(data.message);
+                }
+            });
+        });
+
+        function checkTaskStatus(taskId) {
+            fetch(`/task_status/${taskId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    alert(`Task ID: ${data.task_id}, Status: ${data.status}, Result: ${data.result}`);
+                });
+        }
+    </script>
+    <!-- Add this before the closing </body> tag -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

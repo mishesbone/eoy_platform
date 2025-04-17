@@ -1,0 +1,21 @@
+<h2>Submit New Job</h2>
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="job_name" placeholder="Job Name" required>
+  <textarea name="job_description" placeholder="Job Description"></textarea>
+  <button type="submit">Run Job</button>
+</form>
+
+<h3>Recent Jobs</h3>
+<ul>
+  {% for job in recent_jobs %}
+    <li>{{ job.job_name }} - {{ job.status }} - {{ job.created_at }}</li>
+  {% endfor %}
+</ul>
+
+<h3>Billing Summary</h3>
+<ul>
+  {% for record in billing_summary %}
+    <li>{{ record.description }} - ${{ record.amount }} on {{ record.timestamp }}</li>
+  {% endfor %}
+</ul>

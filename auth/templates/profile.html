@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <h2>Welcome, {{ user.username }}!</h2>
+
+        <p>Email: {{ user.email }}</p>
+
+        <!-- You can add more user information here -->
+        
+        <a href="{% url 'logout' %}">Logout</a>  <!-- Assuming you will create a logout view -->
+    </div>
+    <!-- Add this before the closing </body> tag -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+#billing_history.html
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Billing History for {{ user.username }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Invoice #</th>
+                <th>Total Amount</th>
+                <th>Issued Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for invoice in invoices %}
+                <tr>
+                    <td><a href="{% url 'invoice_detail' invoice.id %}">#{{ invoice.id }}</a></td>
+                    <td>${{ invoice.total_amount }}</td>
+                    <td>{{ invoice.issued_date }}</td>
+                    <td>{{ invoice.due_date }}</td>
+                    <td>{{ invoice.status }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No billing history available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        <a href="{% url 'create_invoice' %}">Create New Invoice</a>
+    </div>
+{% endblock %}

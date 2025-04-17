@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Job</title>
+</head>
+<body>
+    <h1>Submit a Job</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="job_name">Job Name:</label>
+        <input type="text" id="job_name" name="job_name" required><br><br>
+        
+        <label for="job_description">Job Description:</label>
+        <textarea id="job_description" name="job_description" required></textarea><br><br>
+
+        <button type="submit">Submit Job</button>
+    </form>
+    <!-- Add this before the closing </body> tag -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

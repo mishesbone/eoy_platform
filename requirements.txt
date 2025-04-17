@@ -1,0 +1,36 @@
+# Django and related libraries
+Django
+
+# LangChain and AutoGen for agent framework
+langchain
+autogen
+
+# Redis for memory management and caching
+redis
+
+# Celery for task scheduling
+celery
+# GPU monitoring (for resource tracking)
+psutil
+
+# OpenAI API (if using OpenAI models for LangChain)
+openai
+
+# Django REST Framework (for building APIs)
+djangorestframework
+
+# For handling JSON Web Tokens (JWT) for authentication (optional)
+djangorestframework-simplejwt
+
+# Django Channels (optional for real-time task progress using WebSockets)
+channels
+
+# Async support (needed for async views and background tasks)
+asgiref
+
+# For task queue management with Redis (optional, for task queues with Celery)
+celery[redis]==5.2.7
+
+# For database support (if using PostgreSQL, MySQL, etc.)
+psycopg2==2.9.3  # For PostgreSQL, change to mysqlclient or other DB adapter if using MySQL
+mysqlclient==2.1.0  # For MySQL, change to psycopg2 or other DB adapter if using PostgreSQL

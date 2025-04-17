@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Payment Successful ✅</h2>
+
+  {% if invoice %}
+    <p>Thank you for your payment!</p>
+    <p><strong>Invoice ID:</strong> {{ invoice.id }}</p>
+    <p><strong>Amount Paid:</strong> ${{ invoice.total_amount }}</p>
+    <p><strong>Payment Date:</strong> {{ invoice.payment_date }}</p>
+  {% else %}
+    <p>Thank you for your payment. Your receipt will be available soon.</p>
+  {% endif %}
+{% endblock %}

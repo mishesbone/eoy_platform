@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Payment Failed ❌</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>Sorry, your payment could not be completed.</p>
+  {% endif %}
+
+  <a href="{% url 'billing:billing_info' %}" class="btn btn-primary">Return to Billing</a>
+{% endblock %}
